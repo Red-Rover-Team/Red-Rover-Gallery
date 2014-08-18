@@ -1,5 +1,5 @@
 <?php
-require('includes/header.php');
+require_once('includes/header.php');
 ?>
 
 <section>

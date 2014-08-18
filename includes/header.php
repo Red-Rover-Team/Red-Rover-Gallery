@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Заглавие</title>
+    <title>Red Rover's Gallery</title>
     <meta charset="utf-8">
 </head>
 <body>
 <header>
-    <h1>Заглавие</h1>
+    <h1><a href="index.php">Red Rover's Gallery</a></h1>
 </header>
 <?php
-require('sidebar.php');
+require_once('sidebar.php');

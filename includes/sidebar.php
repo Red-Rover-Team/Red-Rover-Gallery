@@ -6,7 +6,7 @@ $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
     <ul>
         <?php
         foreach ($categories as $category) {
-            echo "<li><a href='#'>$category</a></li>";
+            echo "<li><a href='albumList.php?cat=$category'>$category</a></li>";
         }
         ?>
     </ul>

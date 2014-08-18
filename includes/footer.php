@@ -1,5 +1,5 @@
 </body>
 </html>
 <footer>
-    Some text here
+   <p>PHP Teamwork Team Red Rover</p>
 </footer>

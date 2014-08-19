@@ -1,22 +1,16 @@
 var nameField = document.getElementById('name');
-var currectInput = '';
-
-nameField.setAttribute('title', 'The name can contain only english characters and numbers from zero to nine.');
+var currentInput = '';
 
 nameField.addEventListener('input', function() {
 
     var value = nameField.value;
 
-    nameField.setAttribute('maxlength', 25);
-
     if (value.match(/[\W]+/g)) {
-        nameField.value = currectInput;
+        nameField.value = currentInput;
     }
-    if (currectInput.length <= 25) {
-
+    if (currentInput.length <= 25) {
         if (!(value.match(/[\W]+/g))) {
-            currectInput = value;
+            currentInput = value;
         }
     }
 });
-

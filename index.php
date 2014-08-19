@@ -1,15 +1,15 @@
 <?php
 require_once('includes/header.php');
-require ("createAlbum.php");
 ?>
 
 <section>
     <h3>Create new album</h3>
-    <form method="post">
+    <form method="post" action="createAlbum.php">
         <label for="name">Album Name: </label>
-        <input type="text" name="album[]" id="name" required="required" pattern=".{3,}"/>
+        <input type="text" id="name" name="album[]" maxlength="25" required
+               title="The name can contain only english characters and numbers from zero to nine."/>
         <label for="category">Category: </label>
-        <select id="category" name="album[]" required="required">
+        <select id="category" name="album[]" required>
             <option hidden selected></option>
             <?php
             foreach ($categories as $category) {
@@ -19,19 +19,14 @@ require ("createAlbum.php");
         </select>
         <input type="submit" value="Create"/>
     </form>
-
-    <?php
-    if (isset($_POST['album'])) {
-        createAlbum($_POST['album']);
-    }
-    ?>
-    <script src="scripts/albumNameValidator.js"></script>
 </section>
 
 <section>
     <h3>Top rated</h3>
 
 </section>
+
+<script src="scripts/albumNameValidator.js" defer></script>
 
 <?php
 require_once('includes/footer.php');

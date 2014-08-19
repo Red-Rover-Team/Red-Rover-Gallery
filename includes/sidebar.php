@@ -1,5 +1,6 @@
 <?php
 $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
+sort($categories);
 ?>
 <aside>
     <h4>Browse albums</h4>

@@ -9,18 +9,18 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
     if (file_exists($album)) {
         $images = scandir($album, 1);
         $images = array_diff($images, ['.', '..']);
-?>
-    <section>
-        <h3><?=$albumName?></h3>
-        <div>
-            <?php
-            foreach ($images as $img) {
-                echo "<img src='$album/$img' alt='img'/>";
-            }
-            ?>
-        </div>
-    </section>
-<?php
+        ?>
+        <section>
+            <h3><?= $albumName ?></h3>
+            <div>
+                <?php
+                foreach ($images as $img) {
+                    echo "<img src='$album/$img' alt='img'/>";
+                }
+                ?>
+            </div>
+        </section>
+        <?php
     } else {
         echo "<section><h3>This album do not exist</h3></section>";
     }

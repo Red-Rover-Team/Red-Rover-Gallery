@@ -10,12 +10,15 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
         $images = scandir($album, 1);
         $images = array_diff($images, ['.', '..']);
         ?>
+        <link href="styles/lightbox.css" rel="stylesheet"/>
+        <script src="http://code.jquery.com/jquery-latest.min.js" defer></script>
+        <script src="scripts/lightbox.min.js" defer></script>
         <section>
             <h3><?= $albumName ?></h3>
             <div>
                 <?php
                 foreach ($images as $img) {
-                    echo "<img src='$album/$img' alt='img'/>";
+                    echo "<a href='$album/$img' data-lightbox='pics'><img src='$album/$img' alt='img'/></a>";
                 }
                 ?>
             </div>

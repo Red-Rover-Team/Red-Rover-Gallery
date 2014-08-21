@@ -71,7 +71,7 @@ function getRandomImageName() {
 
 function getCategoryAlbumNames() {
 
-    $url = split('album=', getCurrentPageURL());
-    $catAlbArr = split('/', $url[1]);
+    $url = explode('album=', getCurrentPageURL());
+    $catAlbArr = explode('/', $url[1]);
     return $catAlbArr;
 }

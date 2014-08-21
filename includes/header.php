@@ -5,8 +5,19 @@
     <meta charset="utf-8">
 </head>
 <body>
+
 <header>
     <h1><a href="index.php">Red Rover's Gallery</a></h1>
 </header>
-<?php
-require_once('sidebar.php');
+
+<aside>
+    <h4>Browse albums</h4>
+    <ul>
+        <?php
+        $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
+        foreach ($categories as $category) {
+            echo "<li><a href='albumList.php?cat=$category'>$category</a></li>";
+        }
+        ?>
+    </ul>
+</aside>

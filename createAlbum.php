@@ -14,7 +14,7 @@ function createAlbum($album) {
             die();
         }
 
-        addToDatabase($albumName, $category);
+        //addToDatabase($albumName, $category);
         mkdir($pathToAlbum);
         header("Location: uploadPage.php?album=$category/$albumName");
         die();

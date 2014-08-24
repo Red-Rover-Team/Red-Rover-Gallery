@@ -45,6 +45,9 @@ function uploadImage($file) {
 
     // set proper permissions on the new file
     chmod($directory . $name, 0644);
+
+    // add to database
+    addToDatabase($name);
 }
 
 function getCurrentPageURL() {
@@ -70,8 +73,22 @@ function getRandomImageName() {
 }
 
 function getCategoryAlbumNames() {
-
     $url = explode('album=', getCurrentPageURL());
     $catAlbArr = explode('/', $url[1]);
     return $catAlbArr;
+}
+
+// adding the photo to the database
+function addToDatabase($photo) {
+    global $dbName, $hostname, $username, $password;
+
+    $date = date('d-m-Y');
+    $albumName = getCategoryAlbumNames()[1];
+    $dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
+
+    $dbh = new PDO($dsn, $username, $password);
+    $sql = "INSERT INTO photos (photo_name, photo_album, date_of_creation) "
+         . "VALUES ('$photo', '$albumName', '$date')";
+    $q = $dbh->prepare($sql);
+    $q->execute();
 }

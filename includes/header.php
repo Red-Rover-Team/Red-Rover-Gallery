@@ -1,3 +1,11 @@
+<?php
+$hostname = 'localhost';
+$dbName = '1279150_redrover';
+$username = 'root';
+$password = '';
+$categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +21,8 @@
 <aside>
     <h4>Browse albums</h4>
     <ul>
-        <?php
-        $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
-        foreach ($categories as $category) {
-            echo "<li><a href='albumList.php?cat=$category'>$category</a></li>";
-        }
-        ?>
+        <?php foreach ($categories as $category) : ?>
+            <li><a href="albumList.php?cat=<?=$category?>"><?=$category?></a></li>
+        <?php endforeach; ?>
     </ul>
 </aside>

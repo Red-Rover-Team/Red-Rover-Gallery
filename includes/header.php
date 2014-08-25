@@ -18,6 +18,7 @@ require('functions.php');
 
 <aside>
     <h4><a href="registerPage.php">Register</a></h4>
+    <h4><a href="login.php">Login</a></h4>
     <h4><a href="uploadPage.php">Upload photos</a></h4>
     <h4>Browse albums</h4>
     <ul>

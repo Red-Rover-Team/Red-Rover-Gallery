@@ -1,56 +1,63 @@
 <?php
-// this file is not finish !!!
-if (isset($_POST['user'])
-        && isset($_POST['pass'])
-        && isset($_POST['repass'])) {
+function createNewUser($username
+, $password
+, $repeatPassword
+, $firstName
+, $lastName) {
 
-    $userPass = $_POST['pass'];
-    $userRePass = $userPass = $_POST['repass'];
-    
-    if ($userPass === $userRePass) {
+    $request = 1;
 
-        //connecting to database
-        $accounts = mysql_connect('localhost', 'root', '') OR die();
+    if (strlen($username) > 20 && strlen($username) < 3) {
+        $request = 0;
+    } else if ($password !== $repeatPassword || strlen($password) < 2 || strlen($repeatPassword) < 2) {
+        $request = -1;
+    } else if (strlen($firstName) > 20) {
+        $request = -2;
+    } else if (strlen($lastName) > 20) {
+        $request = -3;
+    }
 
-        //selecting database
-        mysql_select_db('accounts', $accounts);
+    if ($request > 0) {
 
-        //initialization request to database
-        $request = "
-        SELECT UserName FROM users
+        $connection = mysqli_connect('localhost', 'root', '', 'accounts');
+
+        $sql = "
+        SELECT username FROM users WHERE username='${username}';
         ";
-        //select column from database
-        $users = mysql_query($request, $accounts);
+        $result = mysqli_query($connection, $sql);
+        $existUser = mysqli_fetch_array($result)['username'];
 
-        $userName = strtolower($_POST['user']);
-        $userFirstName = $_POST['firstName'];
-        $userLastName = $_POST['lastName'];
-        $existUser = FALSE;
-
-        //this will returns the first row of the table
-        $row = mysql_fetch_array($users);
-
-        //checking if such user existing
-        while ($row) {
-            $user = strtolower($row['Username']);
-
-            if ($user === $userName) {
-                $existUser = TRUE;
-                break;
-            }
-
-            //this will return the next row of table
-            $row = mysql_fetch_array($users);
-        }
-
-        if (!$existUser) {
-            
+        if ($existUser === NULL) {
+            $sql = "
+            INSERT INTO users(username,password,first_name,last_name)
+            VALUES('${username}','${password}','${firstName}','${lastName}')
+            ";
+            mysqli_set_charset($connection, 'UTF8');
+            mysqli_query($connection, $sql);
         } else {
-            echo '<p>User with this name already exists.</p>';
+            echo '<p>The user with this name already exist.<p>';
         }
-    }else{
-        echo '<p>The passwords not match</p>';
+    } else {
+        switch ($request) {
+            case 0:
+                echo '<p>The username must have at least 3 and '
+                . 'maximum 20 symbols!</p>';
+                break;
+            case -1:
+                echo '<p>The passwords not match'
+                . 'or the password is too short!</p>';
+                break;
+            case -2:
+                echo '<p>The first name can have maximum 20 symbols!</p>';
+                break;
+            case -3:
+                echo '<p>The last name can have maximum 20 symbols!</p>';
+                break;
+            default :
+                echo '<p>ERROR!</p.';
+        }
     }
 }
+?>
 
 

@@ -17,7 +17,7 @@ function createNewUser($username, $password,
     if ($request > 0) {
         // will be included later, the must be removed
         $hostname = 'localhost';
-        $dbName = '1279150_redrover';
+        $dbName = 'team';
         $db_username = 'root';
         $db_password = '';
         $db_dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
@@ -32,7 +32,10 @@ function createNewUser($username, $password,
         if ($q->rowCount() > 0) {
             echo '<p>This username already exist.<p>';
         } else {
-            $sql = "INSERT INTO users (username, password, first_name, last_name) "
+            
+            
+            
+            $sql = "INSERT INTO users (username, password, firstname, lastname) "
                  . "VALUES ('$username', '$password', '$firstName', '$lastName')";
             $q = $dbh->prepare($sql);
             $q->execute();

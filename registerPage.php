@@ -1,13 +1,10 @@
 <?php
+require_once('includes/header.php');
 
-
-
-if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] === true) {
+if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
     header('Location: index.php');
     exit();
 }
-
-require_once('includes/header.php');
 ?>
 <section>
     <div class="reg-field-frame">
@@ -72,11 +69,8 @@ require_once('includes/header.php');
 
 if (isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['repass'])) {
 
-    createNewUser($_POST['user']
-            , $_POST['pass']
-            , $_POST['repass']
-            , $_POST['firstName']
-            , $_POST['lastName']);
+    createNewUser($_POST['user'], $_POST['pass'], $_POST['repass'],
+            $_POST['firstName'], $_POST['lastName']);
 }
 
 require_once('includes/footer.php');

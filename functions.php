@@ -5,6 +5,10 @@ $hostname = 'localhost';
 $dbName = '1279150_redrover';
 $db_username = 'root';
 $db_password = '';
+//$hostname = 'pdb11.awardspace.net';
+//$dbName = '1279150_redrover';
+//$db_username = '1279150_redrover';
+//$db_password = 'kal!nk3moQ';
 $db_dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
 $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
 
@@ -76,7 +80,11 @@ function createNewUser($username, $password,
                  . "VALUES ('$username', '$password', '$firstName', '$lastName')";
             $q = $dbh->prepare($sql);
             $q->execute();
-            echo '<p>Registration successful.<p>';
+            $_SESSION['userinfo']['username'] = $username;
+            $_SESSION['userinfo']['first_name'] = $firstName;
+            $_SESSION['userinfo']['last_name'] = $lastName;
+            $_SESSION['isLogged'] = true;
+            header('Location: index.php');
         }
     } else {
         switch ($request) {

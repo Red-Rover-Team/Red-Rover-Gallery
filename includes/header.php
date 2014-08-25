@@ -16,8 +16,8 @@ require('functions.php');
     <h1><a href="index.php">Red Rover's Gallery</a></h1>
     <?php
     if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
-        echo 'Hello ' . $_SESSION['userinfo']['first_name'] . ' ' . $_SESSION['userinfo']['last_name']
-            . ' (<strong>' . $_SESSION['userinfo']['username'] . '</strong>)<br>'
+        echo 'Hello, ' . $_SESSION['userinfo']['first_name'] . ' ' . $_SESSION['userinfo']['last_name']
+            . ' (<strong>' . $_SESSION['userinfo']['username'] . '</strong>)!<br>'
             . '<a href="logout.php">Logout</a>';
     }
     ?>

@@ -8,8 +8,6 @@ if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] === true) {
 }
 
 require_once('includes/header.php');
-header('Content-Type: text/html; charset=UTF-8');
-require ('register.php');
 ?>
 <section>
     <div class="reg-field-frame">
@@ -82,4 +80,3 @@ if (isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['repass'])) {
 }
 
 require_once('includes/footer.php');
-?>

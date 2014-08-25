@@ -1,11 +1,6 @@
 <?php
 ob_start();
-$hostname = 'localhost';
-$dbName = '1279150_redrover';
-$db_username = 'root';
-$db_password = '';
-$db_dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
-$categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
+require('functions.php');
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +17,8 @@ $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
 </header>
 
 <aside>
+    <h4><a href="registerPage.php">Register</a></h4>
+    <h4><a href="uploadPage.php">Upload photos</a></h4>
     <h4>Browse albums</h4>
     <ul>
         <?php foreach ($categories as $category) : ?>

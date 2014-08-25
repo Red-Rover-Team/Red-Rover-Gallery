@@ -1,14 +1,4 @@
-<?php
-session_start();
-require_once('includes/header.php');
-if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
-
-    echo 'Hello User: <b>' . $_SESSION['userinfo']['username'] . '</b>!</br>';
-    echo 'First Name: ' . $_SESSION['userinfo']['firstname'] . '</br>';
-    echo 'Last Name: ' . $_SESSION['userinfo']['lastname'] . '</br>';
-    echo '<a href="logout.php">Logout</a>';
-}
-?>
+<?php require_once('includes/header.php'); ?>
 
 <section>
     <h3>Create new album</h3>

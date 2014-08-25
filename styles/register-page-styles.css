@@ -1,0 +1,27 @@
+@font-face {
+    font-family: icons;
+    src: url(../fonts/modernpics.otf);
+}
+.valid {
+    font-family: icons, sans-serif;
+    font-size: 20px;
+    color: #00ff00;
+    height: 20px
+}
+.invalid {
+    font-family: icons, sans-serif;
+    font-size: 23px;
+    color: #ff0000;
+    height: 20px
+}
+.required:after {
+    content: "*";
+    color: red;
+}
+.label, .required {
+    display: inline-block;
+    width: 130px;
+}
+input[type='submit'] {
+    width: 290px;
+}

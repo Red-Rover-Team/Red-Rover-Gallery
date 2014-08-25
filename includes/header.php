@@ -1,8 +1,10 @@
 <?php
+ob_start();
 $hostname = 'localhost';
 $dbName = '1279150_redrover';
-$username = 'root';
-$password = '';
+$db_username = 'root';
+$db_password = '';
+$db_dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
 $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
 ?>
 
@@ -11,9 +13,10 @@ $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
 <head>
     <title>Red Rover's Gallery</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/main-style.css"/>
 </head>
 <body>
-
+<div id="wrapper">
 <header>
     <h1><a href="index.php">Red Rover's Gallery</a></h1>
 </header>

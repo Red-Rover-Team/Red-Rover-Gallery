@@ -14,7 +14,7 @@ username.addEventListener('input', function() {
         status.setAttribute('class', 'invalid');
         status.innerHTML = 'X';
     }
-}, true)
+}, true);
 
 password.addEventListener('input', function() {
     var statusPass = document.getElementById('pass-status');

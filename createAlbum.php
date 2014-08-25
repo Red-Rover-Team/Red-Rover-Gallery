@@ -14,7 +14,7 @@ function createAlbum($album) {
             die();
         }
 
-        //addToDatabase($albumName, $category);
+        addToDatabase($albumName, $category);
         mkdir($pathToAlbum);
         header("Location: uploadPage.php?album=$category/$albumName");
         die();
@@ -26,11 +26,10 @@ function createAlbum($album) {
 
 // creating database entry for the album
 function addToDatabase($albumName, $category) {
-    global $dbName, $hostname, $username, $password;
+    global $db_dsn, $db_username, $db_password;
     $date = date('d-m-Y');
-    $dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
 
-    $dbh = new PDO($dsn, $username, $password);
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
     $sql = "INSERT INTO albums (album_name, album_category, date_of_creation) "
          . "VALUES ('$albumName', '$category', '$date')";
     $q = $dbh->prepare($sql);

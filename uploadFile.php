@@ -80,13 +80,12 @@ function getCategoryAlbumNames() {
 
 // adding the photo to the database
 function addToDatabase($photo) {
-    global $dbName, $hostname, $username, $password;
+    global $db_dsn, $db_username, $db_password;
 
     $date = date('d-m-Y');
     $albumName = getCategoryAlbumNames()[1];
-    $dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
 
-    $dbh = new PDO($dsn, $username, $password);
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
     $sql = "INSERT INTO photos (photo_name, photo_album, date_of_creation) "
          . "VALUES ('$photo', '$albumName', '$date')";
     $q = $dbh->prepare($sql);

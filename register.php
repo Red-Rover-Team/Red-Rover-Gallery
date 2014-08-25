@@ -1,9 +1,6 @@
 <?php
-function createNewUser($username
-, $password
-, $repeatPassword
-, $firstName
-, $lastName) {
+function createNewUser($username, $password,
+         $repeatPassword, $firstName, $lastName) {
 
     $request = 1;
 
@@ -18,34 +15,36 @@ function createNewUser($username
     }
 
     if ($request > 0) {
+        // will be included later, the must be removed
+        $hostname = 'localhost';
+        $dbName = '1279150_redrover';
+        $db_username = 'root';
+        $db_password = '';
+        $db_dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
+        // end
 
-        $connection = mysqli_connect('localhost', 'root', '', 'accounts');
-
-        $sql = "
-        SELECT username FROM users WHERE username='${username}';
-        ";
-        $result = mysqli_query($connection, $sql);
-        $existUser = mysqli_fetch_array($result)['username'];
-
-        if ($existUser === NULL) {
-            $sql = "
-            INSERT INTO users(username,password,first_name,last_name)
-            VALUES('${username}','${password}','${firstName}','${lastName}')
-            ";
-            mysqli_set_charset($connection, 'UTF8');
-            mysqli_query($connection, $sql);
+        $dbh = new PDO($db_dsn, $db_username, $db_password);
+        $sql = "SELECT username "
+             . "FROM users "
+             . "WHERE username = '$username'";
+        $q = $dbh->prepare($sql);
+        $q->execute();
+        if ($q->rowCount() > 0) {
+            echo '<p>This username already exist.<p>';
         } else {
-            echo '<p>The user with this name already exist.<p>';
+            $sql = "INSERT INTO users (username, password, first_name, last_name) "
+                 . "VALUES ('$username', '$password', '$firstName', '$lastName')";
+            $q = $dbh->prepare($sql);
+            $q->execute();
+            echo '<p>Registration successful.<p>';
         }
     } else {
         switch ($request) {
             case 0:
-                echo '<p>The username must have at least 3 and '
-                . 'maximum 20 symbols!</p>';
+                echo '<p>The username must be between 3 and 20 symbols.</p>';
                 break;
             case -1:
-                echo '<p>The passwords not match'
-                . 'or the password is too short!</p>';
+                echo '<p>Passwords do not match or the password is too short.</p>';
                 break;
             case -2:
                 echo '<p>The first name can have maximum 20 symbols!</p>';
@@ -54,10 +53,8 @@ function createNewUser($username
                 echo '<p>The last name can have maximum 20 symbols!</p>';
                 break;
             default :
-                echo '<p>ERROR!</p.';
+                echo '<p>Something went wrong, please try again.</p>';
         }
     }
 }
 ?>
-
-

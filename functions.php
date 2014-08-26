@@ -197,3 +197,82 @@ function addPhotoToDatabase($photo) {
     $q = $dbh->prepare($sql);
     $q->execute();
 }
+
+function getProfileInfo() {
+    require_once ('./classes.php');
+
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
+    $currentUser = $_SESSION['userinfo'];
+    $sql = "
+        SELECT * FROM users
+        WHERE username='$currentUser'
+        ";
+    
+    $result = $dbh->prepare($sql);
+    $result->execute();
+    $result = $result->fetchAll();
+
+    $username = $result[0]['username'];
+    $password = $result[0]['password'];
+    $firstName = $result[0]['first_name'];
+    $lastName = $result[0]['last_name'];
+
+    $user = new user($username, $password, $firstName, $lastName);
+
+    return $user;
+}
+
+function checkRequest($firstName, $lastName, $oldPass, $newPass, $newRePass, $realPass, $username) {
+    $request = 0;
+    //checking if the user trying to change his password
+    if (strlen($oldPass) > 2 && strlen($newPass) > 2 && strlen($newRePass) > 2) {
+        
+        if (strlen($oldPass) <= 20 && strlen($newPass) <= 20 && strlen($newRePass) <= 20) {
+            if ($oldPass === $realPass && $newPass === $newRePass) {
+                $request = 2;
+            }
+        } else {
+            echo '<p>The maximum length of the password is 20 symbols!!!</p>';
+            return 0;
+        }
+    } else if (strlen($oldPass) > 0 || strlen($newPass) > 0 || strlen($newRePass) > 0) {
+        
+        echo '<p>Passwords not match or is too short.</p>';
+        return 0;
+    }
+    if (strlen($firstName) > 20 || strlen($lastName) > 20) {
+        echo '<p>The Max length of the names is 20 symbols !!!</p>';
+        return 0;
+    }
+    if (strlen($oldPass) == 0 && strlen($newPass) == 0 && strlen($newRePass) == 0) {
+        $request = 1;
+    }
+
+    if ($request > 0) {
+        changeProfileInfo($request, $firstName, $lastName, $newPass, $username);
+    }
+    return $request;
+}
+
+function changeProfileInfo($request, $firstName, $lastName, $pass, $username) {
+
+    if ($request == 1) {
+        //this will change only the names
+        $dbh = new PDO($db_dsn, $db_username, $db_password);
+        $sql = "
+            UPDATE users SET first_name='$firstName',last_name='$lastName'
+                WHERE username='$username'
+            ";
+        $q = $dbh->prepare($sql);
+        $q->execute();
+    } else if ($request == 2) {
+        //this will change the password and the names
+        $dbh = new PDO($db_dsn, $db_username, $db_password);
+        $sql = "
+            UPDATE users SET first_name='$firstName',last_name='$lastName',password='$pass'
+                WHERE username='$username'
+            ";
+        $q = $dbh->prepare($sql);
+        $q->execute();
+    }
+}

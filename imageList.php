@@ -28,6 +28,35 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
                 <?php endforeach; ?>
             </div>
         </section>
+        <div class="new-comment">
+            <form method="POST">
+                <input type="text" name="author" id="author" title = "Input comment author's nickname here." placeholder="Comment author..."/><br>
+                <textarea name="comment" id="commentbox" title = "Input comment here." placeholder="Insert comment..."></textarea><br>
+                <input type="submit" value="Post Comment"/><br>
+            </form>
+            <?php
+            if(isset($_POST['author']) && isset($_POST['comment'])) {
+
+                $albumName = basename($album);
+                $comment_auth = trim($_POST['author']);
+                $comment_text = trim($_POST['comment']);
+                global $db_dsn, $db_username, $db_password;
+
+                $dbh = new PDO($db_dsn, $db_username, $db_password);
+                $sql = "SELECT album_id FROM albums "
+                    . "WHERE album_name = '$albumName'";
+                $q = $dbh->prepare($sql);
+                $q->execute();
+                $album_id = $q->fetch()[0];
+
+                $sql = "INSERT INTO image_comments (comment_auth, comment_text, album_ID) "
+                    . "VALUES ('$comment_auth', '$comment_text', $album_id)";
+                $q = $dbh->prepare($sql);
+                $q->execute();
+                echo("Comment posted.");
+            }
+            ?>
+        </div>
     <?php
     } else {
         echo '<section  class="panel"><h3>This album do not exist</h3></section>';
@@ -36,35 +65,7 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
     echo '<section  class="panel"><h3>This album do not exist</h3></section>';
 }
 ?>
-<div class="new-comment">
-        <form method="POST">
-            <input type="text" name="author" id="author" title = "Input comment author's nickname here." placeholder="Comment author..."/><br>
-            <textarea name="comment" id="commentbox" title = "Input comment here." placeholder="Insert comment..."></textarea><br>
-            <input type="submit" value="Post Comment"/><br>
-        </form>
-        <?php
-        if(isset($_POST['author']) && isset($_POST['comment'])) {
 
-            $albumName = basename($album);
-            $comment_auth = trim($_POST['author']);
-            $comment_text = trim($_POST['comment']);
-            global $db_dsn, $db_username, $db_password;
-
-            $dbh = new PDO($db_dsn, $db_username, $db_password);
-            $sql = "SELECT album_id FROM albums "
-                . "WHERE album_name = '$albumName'";
-            $q = $dbh->prepare($sql);
-            $q->execute();
-            $album_id = $q->fetch()[0];
-
-            $sql = "INSERT INTO image_comments (comment_auth, comment_text, album_ID) "
-                . "VALUES ('$comment_auth', '$comment_text', $album_id)";
-            $q = $dbh->prepare($sql);
-            $q->execute();
-            echo("Comment posted.");
-        }
-        ?>
-</div>
 <?php
 require_once('includes/footer.php');
 ?>

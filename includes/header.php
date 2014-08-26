@@ -8,7 +8,16 @@ require('functions.php');
 <head>
     <title>Red Rover's Gallery</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="styles/main-style.css"/>
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/skel.min.js"></script>
+    <script src="scripts/init.js"></script>
+    <!--link rel="stylesheet" href="styles/main-style.css"/-->
+    <noscript>
+        <link rel="stylesheet" href="styles/skel.css" />
+        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="styles/style-desktop.css" />
+        <link rel="stylesheet" href="styles/style-noscript.css" />
+    </noscript>
 </head>
 <body>
 <div id="wrapper">

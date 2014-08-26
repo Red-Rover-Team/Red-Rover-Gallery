@@ -59,24 +59,17 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
             </form>
             <?php
             if(isset($_POST['author']) && isset($_POST['comment'])) {
-
                 $albumName = basename($album);
                 $comment_auth = trim($_POST['author']);
                 $comment_text = trim($_POST['comment']);
                 global $db_dsn, $db_username, $db_password;
-
                 $dbh = new PDO($db_dsn, $db_username, $db_password);
-                $sql = "SELECT album_id FROM albums "
-                    . "WHERE album_name = '$albumName'";
+                $sql = "INSERT INTO album_comments (comment_auth, comment_text, album_name) "
+                    . "VALUES ('$comment_auth', '$comment_text', '$albumName')";
                 $q = $dbh->prepare($sql);
                 $q->execute();
-                $album_id = $q->fetch()[0];
-
-                $sql = "INSERT INTO image_comments (comment_auth, comment_text, album_ID) "
-                    . "VALUES ('$comment_auth', '$comment_text', $album_id)";
-                $q = $dbh->prepare($sql);
-                $q->execute();
-                echo("Comment posted.");
+                Header('Location: ' . $_SERVER['PHP_SELF'] . '?cat=' . $currentDir . '&album=' . $albumName);
+                die();
             }
             ?>
         </section>

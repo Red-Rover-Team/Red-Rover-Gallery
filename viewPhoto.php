@@ -12,7 +12,7 @@ if (isset($_GET['img'])) { $img = $_GET['img']; ?>
 <section class="comments panel">
     <div class="all-comments">
         <?php
-        $comments = getImageComments(basename($img));
+        $comments = getComments(basename($img), 'image');
         foreach ($comments as $comment) : ?>
             <div class="comment">
                 <p class="comment-author"><strong><?=$comment['comment_auth']?></strong></p>

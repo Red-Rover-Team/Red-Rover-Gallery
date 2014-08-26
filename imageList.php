@@ -30,6 +30,20 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
                 <?php endforeach; ?>
             </div>
         </section>
+
+<!--        Needs some class I suppose-->
+        <section>
+            <?php
+            $comments = getComments($albumName, 'album');
+            foreach ($comments as $comment) : ?>
+            <div class="comment">
+                <p class="comment-author"><strong><?=$comment['comment_auth']?></strong></p>
+                <p class="comment-date"><strong><?=$comment['time_added']?></strong></p>
+                <p class="comment-text"><?=$comment['comment_text']?></p>
+            </div>
+            <?php endforeach; ?>
+        </section>
+
         <section class="new-comment panel">
             <header>
                 <h3>Comment on album: <span class="album-name"><?=$albumName?></span></h3>

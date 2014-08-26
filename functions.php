@@ -278,12 +278,12 @@ function addImageComment($text, $auth, $img) {
     $q->execute();
 }
 
-function getImageComments($img) {
+function getComments($entry, $type) {
     global $db_dsn, $db_username, $db_password;
 
     $dbh = new PDO($db_dsn, $db_username, $db_password);
-    $sql = "SELECT comment_text, comment_auth, time_added FROM image_comments "
-        . "WHERE image_name = '$img'";
+    $sql = "SELECT comment_text, comment_auth, time_added FROM {$type}_comments "
+        . "WHERE {$type}_name = '$entry'";
     $q = $dbh->prepare($sql);
     $q->execute();
     $comments = $q->fetchAll(PDO::FETCH_ASSOC);

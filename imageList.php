@@ -21,7 +21,7 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
                 <?php foreach ($images as $img) : $href = "$album/$img"; ?>
                     <a href='<?=$href?>'
                        data-lightbox='pics'
-                       data-title='<a href="<?=$href?>" download>Download</a>
+                       data-title='<a href="<?=$href?>" download>Download</a>&nbsp;&nbsp;
                                    <a href="viewPhoto.php?img=<?=$href?>">Vote and comment</a>'>
 
                         <img src='<?=$href?>' alt='img'/>

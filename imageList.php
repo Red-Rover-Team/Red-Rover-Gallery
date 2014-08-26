@@ -34,21 +34,25 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
         <?php
         $DisplayLikeForm = True;
         if(isset($_POST['like-button'])) {
-            DisplayLikeForm = False;
+            $DisplayLikeForm = False;
             global $db_dsn, $db_username, $db_password;
             $dbh = new PDO($db_dsn, $db_username, $db_password);
             $albumName = basename($album);
-            $sql= "UPDATE albums SET rating = rating + 1 WHERE album_name = $albumName";
+            $sql= "UPDATE albums
+                   SET rating = rating + 1
+                   WHERE album_name = $albumName";
             $q = $dbh->prepare($sql);
             $q->execute();
             die();
         }
         if(isset($_POST['dislike-button'])) {
-            DisplayLikeForm = False;
+            $DisplayLikeForm = False;
             global $db_dsn, $db_username, $db_password;
             $dbh = new PDO($db_dsn, $db_username, $db_password);
             $albumName = basename($album);
-            $sql= "UPDATE albums SET rating = rating - 1 WHERE album_name = $albumName";
+            $sql= "UPDATE albums
+                   SET rating = rating - 1
+                   WHERE album_name = $albumName";
             $q = $dbh->prepare($sql);
             $q->execute();
             die();

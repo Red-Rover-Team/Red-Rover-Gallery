@@ -13,7 +13,7 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
         <link href="styles/lightbox.css" rel="stylesheet"/>
         <script src="http://code.jquery.com/jquery-latest.min.js" defer></script>
         <script src="scripts/lightbox.min.js" defer></script>
-        <section>
+        <section class="panel">
             <h3><?= $albumName ?></h3>
             <div>
                 <?php foreach ($images as $img) : $href = "$album/$img"; ?>
@@ -28,10 +28,10 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
         </section>
     <?php
     } else {
-        echo "<section><h3>This album do not exist</h3></section>";
+        echo '<section  class="panel"><h3>This album do not exist</h3></section>';
     }
 } else {
-    echo "<section><h3>This album do not exist</h3></section>";
+    echo '<section  class="panel"><h3>This album do not exist</h3></section>';
 }
 
 require_once('includes/footer.php');

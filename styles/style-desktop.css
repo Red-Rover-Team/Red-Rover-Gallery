@@ -177,8 +177,8 @@
 				transition: opacity .25s ease-in-out;
 				
 				/* Labels not wide enough? Increase its width below and set margin-left to ((width / 2) * -1) */
-				width: 5.5em;
-				margin-left: -2.75em;
+				width: 7.5em;
+				margin-left: -3.75em;
 			}
 			
 				#nav a span:after

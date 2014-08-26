@@ -6,16 +6,17 @@ if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
     exit();
 } else {
     ?>
-    <form method="POST">
-        <label for="user">Username: </label>
-        <input type="text" name="username" id="user">
-        <br>
-        <label for="pass">Password: </label>
-        <input type="password" name="password" id="pass">
-        <br>
-        <input type="hidden" name="formLogin" value="1">
-        <input type="submit" value="Login">
-    </form>
+    <div class="panel">
+        <form method="POST">
+            <label for="user">Username: </label>
+            <input type="text" name="username" id="user">
+            <br>
+            <label for="pass">Password: </label>
+            <input type="password" name="password" id="pass">
+            <br>
+            <input type="hidden" name="formLogin" value="1">
+            <input type="submit" value="Login">
+        </form>
     <?php
     if (isset($_POST['formLogin']) && $_POST['formLogin'] == 1) {
 
@@ -41,6 +42,8 @@ if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
                 echo '<p>The user do not exist or the password is wrong. Please try again.</p>';
             }
         }
-    }
+    }?>
+    </div>
+<?php 
 }
 require_once('includes/footer.php');

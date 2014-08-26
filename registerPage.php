@@ -6,7 +6,7 @@ if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
     exit();
 }
 ?>
-<section>
+<section class="panel">
     <div class="reg-field-frame">
         <form method="post" id="form">
             <label>

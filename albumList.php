@@ -6,7 +6,7 @@ if (isset($_GET['cat']) && in_array($_GET['cat'], $categories)) {
     $albums = scandir("albums/$currentDir", 1);
     $albums = array_diff($albums, ['.', '..']);
 ?>
-<section>
+<section class="panel">
     <h3><?=$currentDir?></h3>
     <ul>
         <?php
@@ -18,7 +18,7 @@ if (isset($_GET['cat']) && in_array($_GET['cat'], $categories)) {
 </section>
 <?php
 } else {
-    echo "<section><h3>Invalid Category</h3></section>";
+    echo '<section class="panel"><h3>Invalid Category</h3></section>';
 }
 
 require_once('includes/footer.php');

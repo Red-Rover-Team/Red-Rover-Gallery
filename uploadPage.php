@@ -1,7 +1,7 @@
 <?php require_once('includes/header.php'); ?>
 
 
-<section>
+<section class="panel">
     <h3>Upload Images</h3>
     <?php if (isset ($_GET['album'])) { ?>
     <form method="post" enctype="multipart/form-data" id="uploadForm">

@@ -1,0 +1,13 @@
+<?php require_once('includes/header.php'); ?>
+
+
+<section class="panel">
+	<ul>
+		<?php foreach ($categories as $category) : ?>
+		    <li><a href="albumList.php?cat=<?=$category?>"><?=$category?></a></li>
+		<?php endforeach; ?>
+	</ul>
+</section>
+
+
+<?php require_once('includes/footer.php'); ?>

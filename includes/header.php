@@ -9,37 +9,39 @@ require('functions.php');
     <title>Red Rover's Gallery</title>
     <meta charset="utf-8">
     <script src="scripts/jquery.min.js"></script>
-    <script src="scripts/skel.min.js"></script>
+    <!--<script src="scripts/skel.min.js"></script>
     <script src="scripts/init.js"></script>
-    <!--link rel="stylesheet" href="styles/main-style.css"/-->
-    <noscript>
+    link rel="stylesheet" href="styles/main-style.css"/-->
+    <!--noscript-->
         <link rel="stylesheet" href="styles/skel.css" />
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/style-desktop.css" />
         <link rel="stylesheet" href="styles/style-noscript.css" />
-    </noscript>
+    <!--/noscript-->
 </head>
 <body>
 <div id="wrapper">
-<header>
-    <h1><a href="index.php">Red Rover's Gallery</a></h1>
-    <?php
-    if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
-        echo 'Hello, ' . $_SESSION['userinfo']['first_name'] . ' ' . $_SESSION['userinfo']['last_name']
-            . ' (<strong>' . $_SESSION['userinfo']['username'] . '</strong>)!<br>'
-            . '<a href="logout.php">Logout</a>';
-    }
-    ?>
-</header>
+    
+    <header>
+        <h1><a href="index.php">Red Rover's Gallery</a></h1>
+        <?php
+        if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
+            echo 'Hello, ' . $_SESSION['userinfo']['first_name'] . ' ' . $_SESSION['userinfo']['last_name']
+                . ' (<strong>' . $_SESSION['userinfo']['username'] . '</strong>)!<br>'
+                . '<a href="logout.php">Logout</a>';
+        }
+        ?>
+    </header>
+    
+    <!-- Nav -->
+        <nav id="nav">
+            <a href="index.php" class="icon fa-home active"><span>Home</span></a>
+            <a href="uploadPage.php" class="icon fa-folder"><span>Upload Photos</span></a>
+            <a href="login.php" class="icon fa-envelope"><span>Login</span></a>
+            <a href="registerPage.php" class="icon fa-twitter"><span>Register</span></a>
+            <a href="categories.html" class="icon fa-twitter"><span>Categories</span></a>
+        </nav>
 
-<aside>
-    <h4><a href="registerPage.php">Register</a></h4>
-    <h4><a href="login.php">Login</a></h4>
-    <h4><a href="uploadPage.php">Upload photos</a></h4>
-    <h4>Browse albums</h4>
-    <ul>
-        <?php foreach ($categories as $category) : ?>
-            <li><a href="albumList.php?cat=<?=$category?>"><?=$category?></a></li>
-        <?php endforeach; ?>
-    </ul>
-</aside>
+    <!-- Main -->
+        <div id="main">
+            

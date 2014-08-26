@@ -1,4 +1,4 @@
-<?php require_once('includes/header.php'); ?>
+<?php require_once('includes/header.php'); $top3 = getTopRatedAlbums(3); ?>
 <div class="panel">
         <section>
             <header>
@@ -44,26 +44,25 @@
             </div>
         </section>
 
-
         <section>
             <header>
-                <h2>TO DO - Top Rated Albums</h2>
+                <h2>Top Rated Albums</h2>
             </header>
             <div class="row">
                 <div class="4u">
-                    <h3>Top Rated Album Name #1</h3>
+                    <h3><?=$top3[0]['album_name']?></h3>
                     <a class="image fit" href="#"><img alt="" src="img/pic01.jpg"></a>
-                    <p>Votes: 125</p>
+                    <p>Votes: <?=$top3[0]['rating']?></p>
                 </div>
                 <div class="4u">
-                    <h3>Top Rated Album Name #2</h3>
+                    <h3><?=$top3[1]['album_name']?></h3>
                     <a class="image fit" href="#"><img alt="" src="img/pic02.jpg"></a>
-                    <p>Votes: 85</p>
+                    <p>Votes: <?=$top3[1]['rating']?></p>
                 </div>
                 <div class="4u">
-                    <h3>Top Rated Album Name #3</h3>
+                    <h3><?=$top3[2]['album_name']?></h3>
                     <a class="image fit" href="#"><img alt="" src="img/pic03.jpg"></a>
-                    <p>Votes: 65</p>
+                    <p>Votes: <?=$top3[2]['rating']?></p>
                 </div>
             </div>
         </section>

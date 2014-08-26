@@ -289,3 +289,16 @@ function getComments($entry, $type) {
     $comments = $q->fetchAll(PDO::FETCH_ASSOC);
     return $comments;
 }
+
+function getTopRatedAlbums($i) {
+    global $db_dsn, $db_username, $db_password;
+
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
+    $sql = "SELECT album_name, rating "
+        . "FROM albums "
+        . "ORDER BY rating DESC "
+        . "LIMIT $i";
+    $q = $dbh->prepare($sql);
+    $q->execute();
+    return $q->fetchAll(PDO::FETCH_ASSOC);
+}

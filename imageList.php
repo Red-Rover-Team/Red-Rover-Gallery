@@ -32,32 +32,28 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
         </section>
 <!--        Displays Like/Dislike form-->
         <?php
-        $DisplayLikeForm = True;
-        if(isset($_POST['like-button'])) {
-            $DisplayLikeForm = False;
+        $DisplayLikeForm = true;
+        if (isset ($_POST['like-button'])) {
             global $db_dsn, $db_username, $db_password;
             $dbh = new PDO($db_dsn, $db_username, $db_password);
-            $albumName = basename($album);
-            $sql= "UPDATE albums
-                   SET rating = rating + 1
-                   WHERE album_name = $albumName";
+            $sql= "UPDATE albums "
+                    ."SET rating = rating + 1 "
+                    ."WHERE album_name = '$albumName'";
             $q = $dbh->prepare($sql);
             $q->execute();
-            die();
+            $DisplayLikeForm = false;
         }
-        if(isset($_POST['dislike-button'])) {
-            $DisplayLikeForm = False;
+        else if (isset ($_POST['dislike-button'])) {
             global $db_dsn, $db_username, $db_password;
             $dbh = new PDO($db_dsn, $db_username, $db_password);
-            $albumName = basename($album);
-            $sql= "UPDATE albums
-                   SET rating = rating - 1
-                   WHERE album_name = $albumName";
+            $sql= "UPDATE albums "
+                   ."SET rating = rating - 1 "
+                   ."WHERE album_name = '$albumName'";
             $q = $dbh->prepare($sql);
             $q->execute();
-            die();
+            $DisplayLikeForm = false;
         }
-        if($DisplayLikeForm){
+        if ($DisplayLikeForm) {
             ?>
             <form method="POST">
                 <input type="submit" value="Like!" name="like-button"/>
@@ -68,8 +64,9 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
             echo "Vote submitted!";
         }
         ?>
+
 <!--        Needs some class I suppose-->
-        <section>
+        <section class="panel">
             <?php
             $comments = getComments($albumName, 'album');
             foreach ($comments as $comment) : ?>

@@ -5,6 +5,11 @@ require('functions.php');
 
 //DETERMINE WHICH IS THE CURRENT MENU ITEM
 $curr_page = preg_replace( '/\//', '', $_SERVER["REQUEST_URI"]);
+$occurances = preg_match( '/.+?(?=\?)/',  $curr_page, $matches );
+if( $occurances != 0 ) {
+    $curr_page = $matches[0];
+}
+
 switch ($curr_page) {
     case 'index.php':
             $menu_item_on = 'home';
@@ -19,6 +24,9 @@ switch ($curr_page) {
             $menu_item_on = 'register';
         break;
     case 'categories.php':
+    case 'albumList.php':
+    case 'imageList.php':
+    case 'viewPhoto.php':
             $menu_item_on = 'categories';
         break;
 }

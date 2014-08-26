@@ -30,11 +30,32 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
                 <?php endforeach; ?>
             </div>
         </section>
-        <div class="new-comment">
+        <section class="new-comment panel">
+            <header>
+                <h3>Comment on album: <span class="album-name"><?=$albumName?></span></h3>
+            </header>
             <form method="POST">
-                <input type="text" name="author" id="author" title = "Input comment author's nickname here." placeholder="Comment author..."/><br>
-                <textarea name="comment" id="commentbox" title = "Input comment here." placeholder="Insert comment..."></textarea><br>
-                <input type="submit" value="Post Comment"/><br>
+                <div class="row">
+                    <div class="4u">
+                        <label for="author">Author</label>
+                    </div>
+                    <div class="8u">
+                        <input type="text" name="author" id="author" title = "Input comment author's nickname here." placeholder="Comment author..."/><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="4u">
+                        <label for="commentbox">Comment Text</label>
+                    </div>
+                    <div class="8u">
+                        <textarea name="comment" id="commentbox" title = "Input comment here." placeholder="Insert comment..."></textarea><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="12u">
+                        <input type="submit" value="Post Comment"/>
+                    </div>
+                </div>
             </form>
             <?php
             if(isset($_POST['author']) && isset($_POST['comment'])) {
@@ -58,7 +79,7 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
                 echo("Comment posted.");
             }
             ?>
-        </div>
+        </section>
     <?php
     } else {
         echo '<section  class="panel"><h3>This album do not exist</h3></section>';

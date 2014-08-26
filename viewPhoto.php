@@ -7,11 +7,43 @@ if (isset($_GET['img'])) { $img = $_GET['img']; ?>
     <div class="pic">
         <img src="<?=$img?>" alt="pic" style="width: 500px"/>
     </div>
+</section>
+
+<section class="comments panel">
+    <div class="all-comments">
+        <?php
+        $comments = getImageComments(basename($img));
+        foreach ($comments as $comment) : ?>
+            <div class="comment">
+                <p class="comment-author"><strong><?=$comment['comment_auth']?></strong></p>
+                <p class="comment-date"><strong><?=$comment['time_added']?></strong></p>
+                <p class="comment-text"><?=$comment['comment_text']?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
     <div class="new-comment">
         <form method="POST">
-            <input type="text" name="author" id="author" title = "Input comment author's nickname here." placeholder="Comment author..."/><br>
-            <textarea name="comment" id="commentbox" title = "Input comment here." placeholder="Insert comment..."></textarea><br>
-            <input type="submit" value="Post Comment"/><br>
+            <div class="row">
+                <div class="4u">
+                    <label for="author">Author</label>
+                </div>
+                <div class="8u">
+                    <input type="text" name="author" id="author" title = "Input comment author's nickname here." placeholder="Comment author..."/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="4u">
+                    <label for="commentbox">Comment Text</label>
+                </div>
+                <div class="8u">
+                    <textarea name="comment" id="commentbox" title = "Input comment here." placeholder="Insert comment..."></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="12u">
+                    <input type="submit" value="Post Comment"/>
+                </div>
+            </div>
         </form>
         <?php
         if(isset($_POST['author']) && isset($_POST['comment'])) {
@@ -23,17 +55,6 @@ if (isset($_GET['img'])) { $img = $_GET['img']; ?>
             die();
         }
         ?>
-    </div>
-    <div class="all-comments">
-        <?php
-        $comments = getImageComments(basename($img));
-        foreach ($comments as $comment) : ?>
-            <div class="comment">
-                <p class="comment-author"><strong><?=$comment['comment_auth']?></strong></p>
-                <p class="comment-date"><strong><?=$comment['time_added']?></strong></p>
-                <p class="comment-text"><?=$comment['comment_text']?></p>
-            </div>
-        <?php endforeach; ?>
     </div>
 </section>
 

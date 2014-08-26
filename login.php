@@ -8,14 +8,28 @@ if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
     ?>
     <div class="panel">
         <form method="POST">
-            <label for="user">Username: </label>
-            <input type="text" name="username" id="user">
-            <br>
-            <label for="pass">Password: </label>
-            <input type="password" name="password" id="pass">
-            <br>
+            <div class="row">
+                <div class="4u">
+                    <label for="user">Username: </label>
+                </div>
+                <div class="8u">
+                    <input type="text" name="username" id="user">
+                </div>
+            </div>
+            <div class="row">
+                <div class="4u">
+                    <label for="pass">Password: </label>
+                </div>
+                <div class="8u">
+                    <input type="password" name="password" id="pass">
+                </div>
+            </div>
+            <div class="row">
+                <div class="12u">
+                    <input type="submit" value="Login">
+                </div>
+            </div>
             <input type="hidden" name="formLogin" value="1">
-            <input type="submit" value="Login">
         </form>
     <?php
     if (isset($_POST['formLogin']) && $_POST['formLogin'] == 1) {

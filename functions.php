@@ -270,3 +270,26 @@ function changeProfileInfo($request, $firstName, $lastName, $pass, $username) {
         $q->execute();
     }
 }
+
+function addImageComment($text, $auth, $img) {
+    global $db_dsn, $db_username, $db_password;
+
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
+
+    $sql = "INSERT INTO image_comments (comment_auth, comment_text, image_name) "
+        . "VALUES ('$auth', '$text', '$img')";
+    $q = $dbh->prepare($sql);
+    $q->execute();
+}
+
+function getImageComments($img) {
+    global $db_dsn, $db_username, $db_password;
+
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
+    $sql = "SELECT comment_text, comment_auth, time_added FROM image_comments "
+        . "WHERE image_name = '$img'";
+    $q = $dbh->prepare($sql);
+    $q->execute();
+    $comments = $q->fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
+}

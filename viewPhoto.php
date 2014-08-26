@@ -15,35 +15,31 @@ if (isset($_GET['img'])) { $img = $_GET['img']; ?>
         </form>
         <?php
         if(isset($_POST['author']) && isset($_POST['comment'])) {
-
             $imgName = basename($img);
             $comment_auth = trim($_POST['author']);
             $comment_text = trim($_POST['comment']);
-            global $db_dsn, $db_username, $db_password;
-
-            $dbh = new PDO($db_dsn, $db_username, $db_password);
-            $sql = "SELECT photo_id FROM photos "
-                 . "WHERE photo_name = '$imgName'";
-            $q = $dbh->prepare($sql);
-            $q->execute();
-            $photo_id = $q->fetch()[0];
-
-            $sql = "INSERT INTO image_comments (comment_auth, comment_text, image_ID) "
-                 . "VALUES ('$comment_auth', '$comment_text', $photo_id)";
-            $q = $dbh->prepare($sql);
-            $q->execute();
-            echo("Comment posted.");
+            addImageComment($comment_text, $comment_auth, $imgName);
+            Header('Location: ' . $_SERVER['PHP_SELF'] . '?img=' . $img);
+            die();
         }
         ?>
     </div>
-    <div class="comments">
-
+    <div class="all-comments">
+        <?php
+        $comments = getImageComments(basename($img));
+        foreach ($comments as $comment) : ?>
+            <div class="comment">
+                <p class="comment-author"><strong><?=$comment['comment_auth']?></strong></p>
+                <p class="comment-date"><strong><?=$comment['time_added']?></strong></p>
+                <p class="comment-text"><?=$comment['comment_text']?></p>
+            </div>
+        <?php endforeach; ?>
     </div>
 </section>
 
 <?php
 } else {
-    echo '<section  class="panel"><h3>This photo do not exist</h3></section>';
+    echo '<section class="panel"><h3>This photo do not exist</h3></section>';
 }
 
 require_once('includes/footer.php');

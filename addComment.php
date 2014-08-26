@@ -1,6 +1,6 @@
 <form method="POST">
-    <input type="text" name="author" id="author" title = "Input comment author's nickname here."/><br/>
-    <textarea name="comment" id="commentbox" title = "Input comment here."></textarea><br/>
+    <input type="text" name="author" id="author" title = "Input comment author's nickname here." placeholder="Comment author..."/><br/>
+    <textarea name="comment" id="commentbox" title = "Input comment here." placeholder="Insert comment..."></textarea><br/>
     <input type="submit" value="Post Comment"/><br/>
 
 </form>

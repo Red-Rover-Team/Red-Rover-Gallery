@@ -294,7 +294,7 @@ function getTopRatedAlbums($i) {
     global $db_dsn, $db_username, $db_password;
 
     $dbh = new PDO($db_dsn, $db_username, $db_password);
-    $sql = "SELECT album_name, rating "
+    $sql = "SELECT album_name, rating, album_category "
         . "FROM albums "
         . "ORDER BY rating DESC "
         . "LIMIT $i";

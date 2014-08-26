@@ -51,17 +51,17 @@
             <div class="row">
                 <div class="4u">
                     <h3><?=$top3[0]['album_name']?></h3>
-                    <a class="image fit" href="#"><img alt="" src="img/pic01.jpg"></a>
+                    <a class="image fit" href="imageList.php?cat=<?=$top3[0]['album_category']?>&album=<?=$top3[0]['album_name']?>"><img alt="" src="img/pic01.jpg"></a>
                     <p>Votes: <?=$top3[0]['rating']?></p>
                 </div>
                 <div class="4u">
                     <h3><?=$top3[1]['album_name']?></h3>
-                    <a class="image fit" href="#"><img alt="" src="img/pic02.jpg"></a>
+                    <a class="image fit" href="imageList.php?cat=<?=$top3[1]['album_category']?>&album=<?=$top3[1]['album_name']?>"><img alt="" src="img/pic02.jpg"></a>
                     <p>Votes: <?=$top3[1]['rating']?></p>
                 </div>
                 <div class="4u">
                     <h3><?=$top3[2]['album_name']?></h3>
-                    <a class="image fit" href="#"><img alt="" src="img/pic03.jpg"></a>
+                    <a class="image fit" href="imageList.php?cat=<?=$top3[2]['album_category']?>&album=<?=$top3[2]['album_name']?>"><img alt="" src="img/pic03.jpg"></a>
                     <p>Votes: <?=$top3[2]['rating']?></p>
                 </div>
             </div>

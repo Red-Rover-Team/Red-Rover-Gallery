@@ -29,10 +29,9 @@ function createAlbum($album) {
         mkdir($pathToAlbum);
         header("Location: uploadPage.php?album=$category/$albumName");
         die();
-
     } else {
         echo '<p>The name of album must have at least three symbols and '
-           . 'can contain only english characters and numbers from zero to nine.</p>';
+        . 'can contain only english characters and numbers from zero to nine.</p>';
     }
 }
 
@@ -43,14 +42,13 @@ function addAlbumToDatabase($albumName, $category) {
 
     $dbh = new PDO($db_dsn, $db_username, $db_password);
     $sql = "INSERT INTO albums (album_name, album_category, date_of_creation) "
-        . "VALUES ('$albumName', '$category', '$date')";
+            . "VALUES ('$albumName', '$category', '$date')";
     $q = $dbh->prepare($sql);
     $q->execute();
 }
 
 // creating new user
-function createNewUser($username, $password,
-                       $repeatPassword, $firstName, $lastName) {
+function createNewUser($username, $password, $repeatPassword, $firstName, $lastName) {
 
     $request = 1;
 
@@ -69,15 +67,15 @@ function createNewUser($username, $password,
 
         $dbh = new PDO($db_dsn, $db_username, $db_password);
         $sql = "SELECT username "
-             . "FROM users "
-             . "WHERE username = '$username'";
+                . "FROM users "
+                . "WHERE username = '$username'";
         $q = $dbh->prepare($sql);
         $q->execute();
         if ($q->rowCount() > 0) {
             echo '<p>This username already exist.<p>';
         } else {
             $sql = "INSERT INTO users (username, password, first_name, last_name) "
-                 . "VALUES ('$username', '$password', '$firstName', '$lastName')";
+                    . "VALUES ('$username', '$password', '$firstName', '$lastName')";
             $q = $dbh->prepare($sql);
             $q->execute();
             $_SESSION['userinfo']['username'] = $username;
@@ -193,20 +191,17 @@ function addPhotoToDatabase($photo) {
 
     $dbh = new PDO($db_dsn, $db_username, $db_password);
     $sql = "INSERT INTO photos (photo_name, photo_album, date_of_creation) "
-        . "VALUES ('$photo', '$albumName', '$date')";
+            . "VALUES ('$photo', '$albumName', '$date')";
     $q = $dbh->prepare($sql);
     $q->execute();
 }
 
-function getProfileInfo() {
+function getProfileInfo($username) {
     require_once ('./classes.php');
+    global $db_dsn, $db_username, $db_password;
 
     $dbh = new PDO($db_dsn, $db_username, $db_password);
-    $currentUser = $_SESSION['userinfo'];
-    $sql = "
-        SELECT * FROM users
-        WHERE username='$currentUser'
-        ";
+    $sql = "SELECT * FROM users WHERE username='$username'";
     
     $result = $dbh->prepare($sql);
     $result->execute();
@@ -226,7 +221,7 @@ function checkRequest($firstName, $lastName, $oldPass, $newPass, $newRePass, $re
     $request = 0;
     //checking if the user trying to change his password
     if (strlen($oldPass) > 2 && strlen($newPass) > 2 && strlen($newRePass) > 2) {
-        
+
         if (strlen($oldPass) <= 20 && strlen($newPass) <= 20 && strlen($newRePass) <= 20) {
             if ($oldPass === $realPass && $newPass === $newRePass) {
                 $request = 2;
@@ -236,7 +231,7 @@ function checkRequest($firstName, $lastName, $oldPass, $newPass, $newRePass, $re
             return 0;
         }
     } else if (strlen($oldPass) > 0 || strlen($newPass) > 0 || strlen($newRePass) > 0) {
-        
+
         echo '<p>Passwords not match or is too short.</p>';
         return 0;
     }
@@ -255,7 +250,7 @@ function checkRequest($firstName, $lastName, $oldPass, $newPass, $newRePass, $re
 }
 
 function changeProfileInfo($request, $firstName, $lastName, $pass, $username) {
-
+    global $db_dsn, $db_username, $db_password;
     if ($request == 1) {
         //this will change only the names
         $dbh = new PDO($db_dsn, $db_username, $db_password);

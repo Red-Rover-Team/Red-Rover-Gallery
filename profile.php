@@ -1,6 +1,6 @@
 <?php
 require_once('includes/header.php');
-$user = getProfileInfo();
+$user = getProfileInfo($_SESSION['userinfo']['username']);
 ?>
 <section>
     <div id="personal-info">

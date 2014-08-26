@@ -1,14 +1,10 @@
 <?php
 
 // global variables
-$hostname = 'localhost';
+$hostname = 'pdb11.awardspace.net';
 $dbName = '1279150_redrover';
-$db_username = 'root';
-$db_password = '';
-//$hostname = 'pdb11.awardspace.net';
-//$dbName = '1279150_redrover';
-//$db_username = '1279150_redrover';
-//$db_password = 'kal!nk3moQ';
+$db_username = '1279150_redrover';
+$db_password = 'kal!nk3moQ';
 $db_dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
 $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
 
@@ -201,7 +197,8 @@ function getProfileInfo($username) {
     global $db_dsn, $db_username, $db_password;
 
     $dbh = new PDO($db_dsn, $db_username, $db_password);
-    $sql = "SELECT * FROM users WHERE username='$username'";
+    $sql = "SELECT * FROM users "
+         . "WHERE username='$username'";
     
     $result = $dbh->prepare($sql);
     $result->execute();
@@ -254,19 +251,17 @@ function changeProfileInfo($request, $firstName, $lastName, $pass, $username) {
     if ($request == 1) {
         //this will change only the names
         $dbh = new PDO($db_dsn, $db_username, $db_password);
-        $sql = "
-            UPDATE users SET first_name='$firstName',last_name='$lastName'
-                WHERE username='$username'
-            ";
+        $sql = "UPDATE users "
+             . "SET first_name='$firstName', last_name='$lastName' "
+             . "WHERE username='$username'";
         $q = $dbh->prepare($sql);
         $q->execute();
     } else if ($request == 2) {
         //this will change the password and the names
         $dbh = new PDO($db_dsn, $db_username, $db_password);
-        $sql = "
-            UPDATE users SET first_name='$firstName',last_name='$lastName',password='$pass'
-                WHERE username='$username'
-            ";
+        $sql = "UPDATE users "
+             . "SET first_name='$firstName',last_name='$lastName',password='$pass' "
+             . "WHERE username='$username'";
         $q = $dbh->prepare($sql);
         $q->execute();
     }

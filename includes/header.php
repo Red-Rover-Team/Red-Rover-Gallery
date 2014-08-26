@@ -39,7 +39,7 @@ require('functions.php');
             <a href="uploadPage.php" class="icon fa-folder"><span>Upload Photos</span></a>
             <a href="login.php" class="icon fa-envelope"><span>Login</span></a>
             <a href="registerPage.php" class="icon fa-twitter"><span>Register</span></a>
-            <a href="categories.html" class="icon fa-twitter"><span>Categories</span></a>
+            <a href="categories.php" class="icon fa-twitter"><span>Categories</span></a>
         </nav>
 
     <!-- Main -->

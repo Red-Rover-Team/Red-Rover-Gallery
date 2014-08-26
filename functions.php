@@ -1,14 +1,14 @@
 <?php
 
 // global variables
-$hostname = 'localhost';
-$dbName = '1279150_redrover';
-$db_username = 'root';
-$db_password = '';
-//$hostname = 'pdb11.awardspace.net';
+//$hostname = 'localhost';
 //$dbName = '1279150_redrover';
-//$db_username = '1279150_redrover';
-//$db_password = 'kal!nk3moQ';
+//$db_username = 'root';
+//$db_password = '';
+$hostname = 'pdb11.awardspace.net';
+$dbName = '1279150_redrover';
+$db_username = '1279150_redrover';
+$db_password = 'kal!nk3moQ';
 $db_dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
 $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
 

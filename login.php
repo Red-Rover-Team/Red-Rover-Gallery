@@ -7,6 +7,9 @@ if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
 } else {
     ?>
     <div class="panel">
+        <header>
+            <h2>Login</h2>
+        </header>
         <form method="POST">
             <div class="row">
                 <div class="4u">

@@ -7,14 +7,22 @@ if (isset($_GET['cat']) && in_array($_GET['cat'], $categories)) {
     $albums = array_diff($albums, ['.', '..']);
 ?>
 <section class="panel">
-    <h3><?=$currentDir?></h3>
-    <ul>
-        <?php
-        foreach ($albums as $album) {
-            echo "<li><a href='imageList.php?cat=$currentDir&album=$album'>$album</a></li>";
-        }
-        ?>
-    </ul>
+    <header>
+        <h2><?=$currentDir?></h2>
+    </header>
+    <?php
+    foreach ($albums as $album) {
+        echo '
+            <div class="row">
+                <div class="12u">
+                    <h3>' . $album . '</h3>
+                    <a href=imageList.php?cat=' . $currentDir. '&album=' . $album . '>Browse Album</a>
+                    <a href="#album-comment-page">Comment</a>
+                    <a href="#rate-album">Rate</a>
+                </div>
+            </div>';
+    }
+    ?>
 </section>
 <?php
 } else {

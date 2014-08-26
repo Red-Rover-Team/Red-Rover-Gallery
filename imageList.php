@@ -14,7 +14,9 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
         <script src="http://code.jquery.com/jquery-latest.min.js" defer></script>
         <script src="scripts/lightbox.min.js" defer></script>
         <section class="panel">
-            <h3><?= $albumName ?></h3>
+            <header>
+                <h2><?= $albumName ?></h2>
+            </header>
             <div>
                 <?php foreach ($images as $img) : $href = "$album/$img"; ?>
                     <a href='<?=$href?>'

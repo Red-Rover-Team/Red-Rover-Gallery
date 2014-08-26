@@ -60,6 +60,8 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
                 <input type="submit" value="Dislike!" name="dislike-button"/>
             </form>
         <?php
+        } else {
+            echo "Vote submitted!";
         }
         ?>
 <!--        Needs some class I suppose-->

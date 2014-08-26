@@ -1,14 +1,10 @@
 <?php
 
 // global variables
-$hostname = 'localhost';
+$hostname = 'pdb11.awardspace.net';
 $dbName = '1279150_redrover';
-$db_username = 'root';
-$db_password = '';
-//$hostname = 'pdb11.awardspace.net';
-//$dbName = '1279150_redrover';
-//$db_username = '1279150_redrover';
-//$db_password = 'kal!nk3moQ';
+$db_username = '1279150_redrover';
+$db_password = 'kal!nk3moQ';
 $db_dsn = "mysql:host=$hostname; dbname=$dbName; charset=utf8";
 $categories = ['Fun', 'Sports', 'Landmarks', 'Animals', 'Nature'];
 
@@ -269,4 +265,27 @@ function changeProfileInfo($request, $firstName, $lastName, $pass, $username) {
         $q = $dbh->prepare($sql);
         $q->execute();
     }
+}
+
+function addImageComment($text, $auth, $img) {
+    global $db_dsn, $db_username, $db_password;
+
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
+
+    $sql = "INSERT INTO image_comments (comment_auth, comment_text, image_name) "
+        . "VALUES ('$auth', '$text', '$img')";
+    $q = $dbh->prepare($sql);
+    $q->execute();
+}
+
+function getImageComments($img) {
+    global $db_dsn, $db_username, $db_password;
+
+    $dbh = new PDO($db_dsn, $db_username, $db_password);
+    $sql = "SELECT comment_text, comment_auth, time_added FROM image_comments "
+        . "WHERE image_name = '$img'";
+    $q = $dbh->prepare($sql);
+    $q->execute();
+    $comments = $q->fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
 }

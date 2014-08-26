@@ -35,7 +35,7 @@ require('functions.php');
     
     <!-- Nav -->
         <nav id="nav">
-            <a href="index.php" class="icon fa-home active"><span>Home</span></a>
+            <a href="index.php" class="icon fa-home active"><span>Create Album</span></a>
             <a href="uploadPage.php" class="icon fa-folder"><span>Upload Photos</span></a>
             <a href="login.php" class="icon fa-envelope"><span>Login</span></a>
             <a href="registerPage.php" class="icon fa-twitter"><span>Register</span></a>

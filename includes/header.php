@@ -2,6 +2,27 @@
 ob_start();
 session_start();
 require('functions.php');
+
+//DETERMINE WHICH IS THE CURRENT MENU ITEM
+$curr_page = preg_replace( '/\//', '', $_SERVER["REQUEST_URI"]);
+switch ($curr_page) {
+    case 'index.php':
+            $menu_item_on = 'home';
+        break;
+    case 'uploadPage.php':
+            $menu_item_on = 'upload';
+        break;
+    case 'login.php':
+            $menu_item_on = 'login';
+        break;
+    case 'registerPage.php':
+            $menu_item_on = 'register';
+        break;
+    case 'categories.php':
+            $menu_item_on = 'categories';
+        break;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,11 +56,11 @@ require('functions.php');
     
     <!-- Nav -->
         <nav id="nav">
-            <a href="index.php" class="icon fa-home active"><span>Create Album</span></a>
-            <a href="uploadPage.php" class="icon fa-folder"><span>Upload Photos</span></a>
-            <a href="login.php" class="icon fa-envelope"><span>Login</span></a>
-            <a href="registerPage.php" class="icon fa-twitter"><span>Register</span></a>
-            <a href="categories.php" class="icon fa-twitter"><span>Categories</span></a>
+            <a href="index.php" class="icon fa-home <?=(($menu_item_on == 'home')? 'active':'')?>"><span>Create Album</span></a>
+            <a href="uploadPage.php" class="icon fa-folder <?=(($menu_item_on == 'upload')? 'active':'')?>"><span>Upload Photos</span></a>
+            <a href="login.php" class="icon fa-envelope <?=(($menu_item_on == 'login')? 'active':'')?>"><span>Login</span></a>
+            <a href="registerPage.php" class="icon fa-twitter <?=(($menu_item_on == 'register')? 'active':'')?>"><span>Register</span></a>
+            <a href="categories.php" class="icon fa-twitter <?=(($menu_item_on == 'categories')? 'active':'')?>"><span>Categories</span></a>
         </nav>
 
     <!-- Main -->

@@ -2,16 +2,27 @@
 
 
 <section class="panel">
-    <h3>Upload Images</h3>
+    <header>
+        <h2>Upload Images</h2>
+    </header>
+
     <?php if (isset ($_GET['album'])) { ?>
     <form method="post" enctype="multipart/form-data" id="uploadForm">
-        <label>Maximum image size is 2MB. Only JPEG, PNG and JPG extensions are allowed.</label>
-        <div>
-            <input type="file" name="file"/>
+        <div class="row">
+            <div class="12u">
+                <label>Maximum image size is 2MB. Only JPEG, PNG and JPG extensions are allowed.</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="8u">
+                <input type="file" name="file"/>
+            </div>
+            <div class="4u">
+                <input type="submit" value="Upload" name="submit"/>
+            </div>
         </div>
 <!--        <button id="addFile" type="button">Add File</button>-->
 <!--        <button id="removeFile" type="button">Remove File</button>-->
-        <input type="submit" value="Upload" name="submit"/>
     </form>
     <?php
         if (!empty($_FILES['file']) && $_FILES['file']['name'] != '') {
@@ -34,20 +45,34 @@
     } else { ?>
     <form method="get">
         <?php if (isset ($_GET['err'])) echo '<p><strong>Invalid name. Please try again or create new album.</strong></p>'; ?>
-        <label for="category">Select the category: </label>
-        <select id="category" name="alb[]" required>
-            <option hidden selected></option>
-            <?php
-            foreach ($categories as $category) {
-                echo "<option value='$category'>$category</option>";
-            }
-            ?>
-        </select>
-        <br>
-        <label for="name">Enter the name of the album: </label>
-        <br>
-        <input type="text" name="alb[]" id="name"" required/>
-        <input type="submit" value="Select"/>
+        <div class="row">
+            <div class="4u">
+                <label for="category">Select the category: </label>
+            </div>
+            <div class="8u">
+                <select id="category" name="alb[]" required>
+                    <option hidden selected></option>
+                    <?php
+                    foreach ($categories as $category) {
+                        echo "<option value='$category'>$category</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="4u">
+                <label for="name">Enter the name of the album: </label>
+            </div>
+            <div class="8u">
+                <input type="text" name="alb[]" id="name" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="12u">
+                <input type="submit" value="Select"/>
+            </div>
+        </div>
     </form>
     <?php } ?>
 </section>

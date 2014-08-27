@@ -22,7 +22,7 @@
                     </div>
                     <div class="4u">
                         <select id="category" name="album[]" required>
-                            <option hidden selected></option>
+                            <option value="" hidden selected> </option>
                             <?php
                             foreach ($categories as $category) {
                                 echo "<option value='$category'>$category</option>";
@@ -68,8 +68,6 @@
         </section>
 
     </div>
-
-</div><!--End Main-->
 
 <script src="scripts/albumNameValidator.js" defer></script>
 

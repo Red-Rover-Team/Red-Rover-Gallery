@@ -49,7 +49,7 @@
             </div>
             <div class="8u">
                 <select id="category" name="alb[]" required>
-                    <option hidden selected></option>
+                    <option value="" hidden selected> </option>
                     <?php
                     foreach ($categories as $category) {
                         echo "<option value='$category'>$category</option>";

@@ -15,7 +15,7 @@ if (isset($_GET['cat']) && in_array($_GET['cat'], $categories)) {
     <ul id="album-list">
     <?php
     foreach ($albums as $album) {
-        echo '<li><a href=imageList.php?cat=' . $currentDir. '&album=' . $album . '>' . $album . '</a></li>';
+        echo '<li><a href=imageList.php?cat=' . $currentDir . '&album=' . $album . '>' . $album . '</a></li>';
     }
     ?>
     </ul>

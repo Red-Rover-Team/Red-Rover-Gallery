@@ -15,8 +15,8 @@
 				<?php endif; ?>		
 		    	
 		    	<div class="6u">
-		    		<a href="albumList.php?cat=<?=$categories[$i]?>" class="image fit" alt="<?=$categories[$i]?>">
-		    			<img src="img/<?=$categories[$i]?>.jpg">
+		    		<a href="albumList.php?cat=<?=$categories[$i]?>" class="image fit">
+		    			<img src="img/<?=$categories[$i]?>.jpg" alt="<?=$categories[$i]?>" />
 		    		</a>
 		    	</div>
 				

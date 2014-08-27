@@ -138,6 +138,7 @@ function uploadImage($file) {
 
     if ($success) {
         echo '<p class="success">The file is successfully uploaded.</p>';
+		echo "<p class='success'><a href='imageList.php?cat=$categoryName&album=$albumName'>Go to album</a></p>";
     } else {
         echo '<p class="error">Unable to upload file.</p>';
         exit();

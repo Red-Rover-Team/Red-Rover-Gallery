@@ -15,13 +15,19 @@ if (isset($_GET['img'])) { $img = $_GET['img']; ?>
         $comments = getComments(basename($img), 'image');
         foreach ($comments as $comment) : ?>
             <div class="comment">
-                <p class="comment-author"><strong><?=$comment['comment_auth']?></strong></p>
-                <p class="comment-date"><strong><?=$comment['time_added']?></strong></p>
-                <p class="comment-text"><?=$comment['comment_text']?></p>
+                <p class="comment-author">
+                    <strong><?=$comment['comment_auth']?></strong>
+                    <small class="comment-date"><?=$comment['time_added']?></small>
+                </p>
+                <blockquote class="comment-text"><?=$comment['comment_text']?></blockquote>
             </div>
+            <hr>
         <?php endforeach; ?>
     </div>
     <div class="new-comment">
+        <header>
+            <h3>Comment image</h3>
+        </header>
         <form method="POST">
             <div class="row">
                 <div class="4u">

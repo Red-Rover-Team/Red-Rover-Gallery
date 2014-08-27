@@ -94,7 +94,7 @@ if (isset($_GET['album']) && !empty($_GET['album']) &&
 
             <div class="new-comment">
                 <header>
-                    <h3>Comment on album: <span class="album-name"><?=$albumName?></span></h3>
+                    <h3>Comment album: <span class="album-name"><?=$albumName?></span></h3>
                 </header>
                 <form method="POST">
                     <div class="row">

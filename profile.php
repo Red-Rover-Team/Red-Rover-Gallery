@@ -2,9 +2,11 @@
 require_once('includes/header.php');
 $user = getProfileInfo($_SESSION['userinfo']['username']);
 ?>
-<section>
-    <div id="personal-info">
+<section class="panel">
+    <header>
         <h2>Personal information</h2>
+    </header>
+    <div id="personal-info">
         <p>Username: <span><?= $user->getUserName() ?></span></p>
         <p>First name: <span><?= $user->getFirstName() ?></span></p>
         <p>Last name: <span><?= $user->getLastName() ?></span></p>

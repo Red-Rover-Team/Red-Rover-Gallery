@@ -94,10 +94,7 @@ if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == true) {
         </form>
     </div>
 </section>
-<script src="scripts/registrationValidator.js" defer></script>
-<link rel="stylesheet" href="styles/register-page-styles.css"/>
 <?php
-
 if (isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['repass'])) {
 
     createNewUser($_POST['user'], $_POST['pass'], $_POST['repass'],

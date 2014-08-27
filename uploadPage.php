@@ -21,8 +21,6 @@
                 <input type="submit" value="Upload" name="submit"/>
             </div>
         </div>
-<!--        <button id="addFile" type="button">Add File</button>-->
-<!--        <button id="removeFile" type="button">Remove File</button>-->
     </form>
     <?php
         if (!empty($_FILES['file']) && $_FILES['file']['name'] != '') {
@@ -44,7 +42,7 @@
 
     } else { ?>
     <form method="get">
-        <?php if (isset ($_GET['err'])) echo '<p><strong>Invalid name. Please try again or create new album.</strong></p>'; ?>
+        <?php if (isset ($_GET['err'])) echo '<p class="error"><strong>Invalid name. Please try again or create new album.</strong></p>'; ?>
         <div class="row">
             <div class="4u">
                 <label for="category">Select the category: </label>

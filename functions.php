@@ -137,9 +137,9 @@ function uploadImage($file) {
     $success = move_uploaded_file($file['tmp_name'], $directory . $name);
 
     if ($success) {
-        echo '<p>The file is successfully uploaded.</p>';
+        echo '<p class="success">The file is successfully uploaded.</p>';
     } else {
-        echo "<p>Unable to upload file.</p>";
+        echo '<p class="error">Unable to upload file.</p>';
         exit();
     }
 
